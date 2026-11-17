@@ -131,10 +131,10 @@ export default function JyotiEnterprisesWebsite() {
     setSubmitted(true);
   };
 
-  const renderClientCards = (projects, isCopy = false) => projects.map((project) => (
+  const renderClientCards = (projects, isCopy = false, isStatic = false) => projects.map((project) => (
     <article
       key={`${project.company}-${project.location}${isCopy ? '-copy' : ''}`}
-      className="group relative min-h-77.5 w-[min(80vw,330px)] shrink-0 overflow-hidden rounded-2xl border border-[#E8DDAA] bg-[#FFFEF5] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#78A8C7] hover:shadow-xl hover:shadow-[#78A8C7]/20"
+      className={`group relative ${isStatic ? 'w-full' : 'min-h-77.5 w-[min(80vw,330px)] shrink-0'} overflow-hidden rounded-2xl border border-[#E8DDAA] bg-[#FFFEF5] p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#78A8C7] hover:shadow-xl hover:shadow-[#78A8C7]/20`}
     >
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-[#FFC928] to-[#78A8C7]" />
       <div className="mb-5">
@@ -366,7 +366,11 @@ export default function JyotiEnterprisesWebsite() {
             <p className="text-slate-600">Explore our installed and maintained ETP and STP projects, including plant capacities and project scope.</p>
           </div>
 
-          <div className="client-marquee relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-5 overflow-hidden px-3 sm:px-4" aria-label="Client projects, scrolling automatically">
+          <div className="space-y-4 sm:hidden">
+            {renderClientCards(clientProjects, false, true)}
+          </div>
+
+          <div className="client-marquee relative left-1/2 hidden w-screen -translate-x-1/2 flex-col gap-5 overflow-hidden px-3 sm:flex sm:px-4" aria-label="Client projects, scrolling automatically">
             {[clientProjects.filter((_, index) => index % 2 === 0), clientProjects.filter((_, index) => index % 2 !== 0)].map((projects, rowIndex) => (
               <div key={rowIndex} className="client-marquee-row overflow-hidden">
                 <div className={`client-marquee-track flex w-max${rowIndex === 1 ? ' client-marquee-track-reverse' : ''}`}>
