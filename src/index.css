@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("fonts/plus-jakarta-sans-italic.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+
+
+:root {
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1e293b;
+  background: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.client-marquee-track {
+  animation: client-marquee-scroll 60s linear infinite;
+}
+
+.client-marquee-track-reverse {
+  animation-direction: reverse;
+}
+
+.client-marquee-row:hover .client-marquee-track,
+.client-marquee-row:focus-within .client-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes client-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track {
+    animation: none;
+  }
+
+  .client-marquee-copy {
+    display: none;
+  }
+
+  .client-marquee-row {
+    overflow-x: auto;
+  }
+}
